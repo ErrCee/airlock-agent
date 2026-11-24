@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Airlock Agent — Zero-Leak Private Tab Runtime",
+  "version": "1.0.0",
+  "description": "Agentic privacy airlock across private/localhost Chrome tabs: on-device Gemini Nano 4 scrubs tool outputs before Cloud Gemini reasoning.",
+  "permissions": ["tabs", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "extension/popup.html",
+    "default_title": "Airlock Agent — Select Tabs & Launch"
+  }
+}

@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Strictly anonymized run telemetry only — zero raw PII or prompt text permitted
+    match /airlock_runs/{docId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasAll([
+          'surface',
+          'sourceCount',
+          'totalHops',
+          'vaultEntityCount',
+          'canaryLeaks',
+          'localScrubCalls',
+          'localScrubRequests',
+          'cloudModel',
+          'totalLatencyMs',
+          'compressionPct',
+          'createdAt'
+        ])
+        && request.resource.data.surface is string
+        && request.resource.data.sourceCount is number
+        && request.resource.data.totalHops is number
+        && request.resource.data.vaultEntityCount is number
+        && request.resource.data.canaryLeaks is number
+        && request.resource.data.localScrubCalls is number
+        && request.resource.data.localScrubRequests is number
+        && request.resource.data.cloudModel is string
+        && request.resource.data.totalLatencyMs is number
+        && request.resource.data.compressionPct is number;
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

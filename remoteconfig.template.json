@@ -1,0 +1,24 @@
+{
+  "parameters": {
+    "cloud_agent_model": {
+      "defaultValue": { "value": "gemini-4-hydrogen" },
+      "description": "Cloud Gemini orchestrator model for multi-turn tool calling (hot-swappable to gemini-4-argon).",
+      "valueType": "STRING"
+    },
+    "airlock_fallback_model": {
+      "defaultValue": { "value": "gemini-4-hydrogen" },
+      "description": "Cloud fallback model only when user explicitly selects PREFER_ON_DEVICE instead of strict ONLY_ON_DEVICE.",
+      "valueType": "STRING"
+    },
+    "max_agent_hops": {
+      "defaultValue": { "value": "6" },
+      "description": "Maximum tool-calling turns per agent session.",
+      "valueType": "NUMBER"
+    },
+    "high_rtt_threshold_ms": {
+      "defaultValue": { "value": "400" },
+      "description": "RTT threshold above which the UI recommends offline/local-only synthesis.",
+      "valueType": "NUMBER"
+    }
+  }
+}
